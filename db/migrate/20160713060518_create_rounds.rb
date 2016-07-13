@@ -5,8 +5,6 @@ class CreateRounds < ActiveRecord::Migration
       t.string :name
       t.string :round_type
       t.integer :order
-
-      t.timestamps null: false
     end
   end
 end

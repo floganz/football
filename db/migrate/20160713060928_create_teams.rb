@@ -5,5 +5,7 @@ class CreateTeams < ActiveRecord::Migration
       t.integer :second_user_id
       t.string :name
     end
+  	add_foreign_key :teams, :users, name: :first_user_id, column: :id
+  	add_foreign_key :teams, :users, name: :second_user_id, column: :id
   end
 end

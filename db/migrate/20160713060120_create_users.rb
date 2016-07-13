@@ -6,8 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :photo
       t.integer :rang
-
-      t.timestamps null: false
     end
   end
 end
