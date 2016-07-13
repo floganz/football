@@ -1,4 +1,36 @@
 Rails.application.routes.draw do
+  get 'teams/new'
+
+  get 'teams/show'
+
+  get 'teams/edit'
+
+  get 'teams/create'
+
+  get 'matches/new'
+
+  get 'matches/show'
+
+  get 'matches/edit'
+
+  get 'matches/create'
+
+  get 'tournaments/new'
+
+  get 'tournaments/show'
+
+  get 'tournaments/edit'
+
+  get 'tournaments/create'
+
+  get 'users/new'
+
+  get 'users/show'
+
+  get 'users/edit'
+
+  get 'users/create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,6 +39,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  resources :users, :tournaments, :teams, :matches
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
