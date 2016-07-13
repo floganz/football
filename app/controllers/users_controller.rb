@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user=User.update(params[:user.keys],params[:user].values)
   end
 
   def create
