@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tournament_id: 
+  name: MyString
+  round_type: MyString
+  order: 1
+
+two:
+  tournament_id: 
+  name: MyString
+  round_type: MyString
+  order: 1
