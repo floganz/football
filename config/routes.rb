@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'rounds/new'
+
+  get 'rounds/create'
+
+  get 'rounds/show'
+
+  get 'rounds/edit'
+
   get 'teams/new'
 
   get 'teams/show'
@@ -41,7 +49,11 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  resources :users, :tournaments, :teams, :matches
+  resources :users, :tournaments, :teams, :matches, :rounds
+
+  resources :tournaments do
+    resources :rounds
+  end
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
