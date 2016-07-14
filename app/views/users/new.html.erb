@@ -2,18 +2,22 @@
 <head>
 	<%= stylesheet_link_tag "layout" %>
 </head>
+<body>
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
-
+<%= flash[:notice] %>
 <p>Fill the form below</p>
-<form accept-charset="UTF-8" action="/users" method="post">
-<input type="hidden"
-       value="<%= form_authenticity_token %>"
-       name="authenticity_token"/>
-  <input type="text" name="users[name]" placeholder="Name" />
-  <input type="text" name="users[surname]" placeholder="Surname" />
-  <input type="text" name="users[email]" placeholder="Email" />
-  <input type="text" name="users[photo]" placeholder="Photo" />
-  <button type="submit">Зарегистрироваться</button>
-</form>
+
+<%= form_tag(:users, method: "post") do %>
+	<%= label(:user, :name) %>
+	<%= text_field(:user, :name) %>
+	<%= label(:user, :surname) %>
+	<%= text_field(:user, :surname) %>
+	<%= label(:user, :email) %>
+	<%= text_field(:user, :email) %>
+	<%= label(:user, :photo) %>
+	<%= text_field(:user, :photo) %>
+	<%= submit_tag("Register") %>
+<% end %>
+</body>
 </html>
