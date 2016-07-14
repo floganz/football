@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714060803) do
+ActiveRecord::Schema.define(version: 20160714111121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160714060803) do
     t.integer  "second_team_goals"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "round_id"
   end
 
   create_table "rounds", force: :cascade do |t|
@@ -68,13 +69,16 @@ ActiveRecord::Schema.define(version: 20160714060803) do
     t.integer "vote_user_id"
     t.integer "user_id"
     t.integer "rank"
+    t.integer "tournament_id"
   end
 
+  add_foreign_key "matches", "rounds", column: "id", name: "round_id"
   add_foreign_key "matches", "teams", column: "id", name: "first_team_id"
   add_foreign_key "matches", "teams", column: "id", name: "second_team_id"
   add_foreign_key "rounds", "tournaments"
   add_foreign_key "teams", "users", column: "id", name: "first_user_id"
   add_foreign_key "teams", "users", column: "id", name: "second_user_id"
+  add_foreign_key "votings", "tournaments", column: "id", name: "tournament_id"
   add_foreign_key "votings", "users", column: "id", name: "user_id"
   add_foreign_key "votings", "users", column: "id", name: "vote_user_id"
 end
