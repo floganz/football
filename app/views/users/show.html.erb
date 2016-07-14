@@ -4,5 +4,6 @@
 <p>name: <%= @user.name %></p>
 <p>surname: <%= @user.surname %></p>
 <p>email: <%= @user.email %></p>
-<p>photo: <%= @user.photo %></p>
+<!-- <p>photo: <%= @user.photo %></p>-->
+<p><%= image_tag "#{@user.photo}" %></p>
 <p>rang: <%= @user.rang %></p>
