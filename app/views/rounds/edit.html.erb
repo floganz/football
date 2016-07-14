@@ -1,2 +1,21 @@
 <h1>Rounds#edit</h1>
 <p>Find me in app/views/rounds/edit.html.erb</p>
+
+<%= flash[:notice] %>
+<% @round=Round.find_by(id: params[:id]) %>
+
+<%= form_tag("/rounds/#{params[:id]}", method: 'put') do %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:round,:name) %>
+		<%= text_field(:round, :name) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:round,:round_type) %>
+		<%= text_field(:round, :round_type) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:round,:order) %>
+		<%= text_field(:round, :order) %>
+	<% end %>
+	<%= submit_tag("Save changes", class: 'btn btn-default') %>
+<% end %>

@@ -8,7 +8,7 @@ class CreateMatches < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-  	add_foreign_key :matches, :teams, name: :first_team_id, column: :id
-  	add_foreign_key :matches, :teams, name: :second_team_id, column: :id
+  	add_foreign_key :matches, :teams, column: :first_team_id, primary_key: :id
+  	add_foreign_key :matches, :teams, column: :second_team_id, primary_key: :id
   end
 end

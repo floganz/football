@@ -1,2 +1,20 @@
 <h1>Teams#new</h1>
 <p>Find me in app/views/teams/new.html.erb</p>
+
+<%= flash[:notice] %>
+
+<%= form_tag(:teams, method: 'post') do %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:team,:first_user_id) %>
+		<%= text_field(:team, :first_user_id) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:team, :second_user_id) %>
+		<%= text_field(:team, :second_user_id) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:team, :name) %>
+		<%= text_field(:team, :name) %>
+	<% end %>
+	<%= submit_tag("Add new team") %>
+<% end %>

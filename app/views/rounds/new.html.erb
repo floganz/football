@@ -2,6 +2,7 @@
 <p>Find me in app/views/rounds/new.html.erb</p>
 
 <%= flash[:notice] %>
+
 <%= form_tag(:rounds, method: 'post') do %>
 	<%= text_field(:round,:tournament_id, :type => 'hidden', :value => params[:tournament_id]) %>
 	<%= content_tag :div, :class => 'form-group' do %>

@@ -1,2 +1,18 @@
 <h1>Matches#edit</h1>
 <p>Find me in app/views/matches/edit.html.erb</p>
+
+<% @match=Match.find_by(id: params[:id]) %>
+
+<%= flash[:notice] %>
+
+<%= form_tag("/matches/#{params[:id]}", method: 'put') do %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:match,:first_team_goals) %>
+		<%= text_field(:match, :first_team_goals) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:match, :second_team_goals) %>
+		<%= text_field(:match, :second_team_goals) %>
+	<% end %>
+	<%= submit_tag("Save changes", class: 'btn btn-default') %>
+<% end %>

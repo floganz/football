@@ -1,2 +1,9 @@
 <h1>Rounds#show</h1>
 <p>Find me in app/views/rounds/show.html.erb</p>
+
+<%= flash[:notice] %>
+
+<p>Tournament: <%= @round.tournament_id %></p>
+<p>Name: <%= @round.name %></p>
+<p>Round type: <%= @round.round_type %></p>
+<p>Order: <%= @round.order %></p>

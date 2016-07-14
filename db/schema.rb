@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714111121) do
+ActiveRecord::Schema.define(version: 20160714131847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20160714111121) do
     t.integer  "second_team_goals"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "round_id"
+    t.integer  "round_id"
   end
+
+  add_index "matches", ["round_id"], name: "index_matches_on_round_id", using: :btree
 
   create_table "rounds", force: :cascade do |t|
     t.integer "tournament_id"
@@ -72,13 +74,15 @@ ActiveRecord::Schema.define(version: 20160714111121) do
     t.integer "tournament_id"
   end
 
-  add_foreign_key "matches", "rounds", column: "id", name: "round_id"
-  add_foreign_key "matches", "teams", column: "id", name: "first_team_id"
-  add_foreign_key "matches", "teams", column: "id", name: "second_team_id"
+  add_index "votings", ["tournament_id"], name: "index_votings_on_tournament_id", using: :btree
+
+  add_foreign_key "matches", "rounds"
+  add_foreign_key "matches", "teams", column: "first_team_id"
+  add_foreign_key "matches", "teams", column: "second_team_id"
   add_foreign_key "rounds", "tournaments"
-  add_foreign_key "teams", "users", column: "id", name: "first_user_id"
-  add_foreign_key "teams", "users", column: "id", name: "second_user_id"
-  add_foreign_key "votings", "tournaments", column: "id", name: "tournament_id"
-  add_foreign_key "votings", "users", column: "id", name: "user_id"
-  add_foreign_key "votings", "users", column: "id", name: "vote_user_id"
+  add_foreign_key "teams", "users", column: "first_user_id"
+  add_foreign_key "teams", "users", column: "second_user_id"
+  add_foreign_key "votings", "tournaments"
+  add_foreign_key "votings", "users", name: "user_id"
+  add_foreign_key "votings", "users", name: "vote_user_id"
 end

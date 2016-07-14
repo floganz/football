@@ -1,2 +1,24 @@
 <h1>Matches#new</h1>
 <p>Find me in app/views/matches/new.html.erb</p>
+
+<%= flash[:notice] %>
+
+<%= form_tag(:matches, method: 'post') do %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:match, :first_team_id) %>
+		<%= text_field(:match, :first_team_id) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:match, :second_team_id) %>
+		<%= text_field(:match, :second_team_id) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:match, :first_team_goals) %>
+		<%= text_field(:match, :first_team_goals) %>
+	<% end %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label(:match, :second_team_goals) %>
+		<%= text_field(:match, :second_team_goals) %>
+	<% end %>
+	<%= submit_tag("Add new match", class: 'btn btn-default') %>
+<% end %>

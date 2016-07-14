@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'voting/new'
+
+  get 'voting/edit'
+
+  get 'voting/update'
+
+  get 'voting/create'
+
+  get 'voting/show'
+
   get 'rounds/new'
 
   get 'rounds/create'
@@ -49,7 +59,7 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  resources :users, :tournaments, :teams, :matches, :rounds
+  resources :users, :tournaments, :teams, :matches, :rounds, :votings
 
   resources :tournaments do
     resources :rounds
