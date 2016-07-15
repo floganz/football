@@ -1,36 +1,35 @@
 class TeamsController < ApplicationController
-  def new
-  end
-
   def show
-    @team=Team.find_by(id: params[:id])
+    @team = Team.find_by id: params[:id]
     if @team.nil?
-      flash[:notice]='not found'
+      flash[:notice] = "Team not found"
       render 'index'
     end
-  end
-
-  def edit
+    _first_user = User.find_by id: @team.first_user_id
+    flash[:first_user_name] = "#{ _first_user.surname } #{ _first_user.name }"
+    _second_user = User.find_by id: @team.second_user_id
+    flash[:second_user_name] = "#{ _second_user.surname } #{ _second_user.name }"
   end
 
   def create
-    @team=Team.new(team_params)
+    @team = Team.new team_params
     if @team.save
-      flash[:notice]="success"
+      flash[:notice] = ""
       redirect_to @team
     else
-      flash[:notice]="smt wrong"
+      flash[:notice] = "Something went wrong, try again"
       render 'new'
     end
   end
 
   def update
-    @team=Team.update(params[:id],:name => params[:team][:name])
+    #@team=Team.update(params[:id],:name => params[:team][:name])
+    @team = Team.update params[:id], team_params
     if @team.save
-      flash[:notice]="all ok"
+      flash[:notice] = "Changes saved"
       redirect_to @team
     else
-      flash[:notice]="smt wrong"
+      flash[:notice] = "Something went wrong, try again"
       render "edit"
     end
   end

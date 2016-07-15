@@ -1,39 +1,31 @@
 class TournamentsController < ApplicationController
-  def index
-  end
-
-  def new
-  end
-
   def show
-    @tournament=Tournament.find_by(id: params[:id])
+    @tournament = Tournament.find_by id: params[:id]
     if @tournament.nil?
-      flash[:alert]="Tournament not found"
+      flash[:notice] = "Tournament not found"
       render "index"
     end
   end
 
-  def edit
-  end
-
   def create
-    @tournament=Tournament.new(tournament_params)
+    @tournament = Tournament.new tournament_params
     if @tournament.save
-      flash[:notice]=""
+      flash[:notice] = ""
       redirect_to @tournament
     else
-      flash[:notice]="Smt went wrong, try again"
+      flash[:notice] = "Something went wrong, try again"
       render "new"
     end
   end
 
   def update
-    @tournament=Tournament.update(params[:id],:name => params[:tournament][:name], :status => params[:tournament][:status])
+    #@tournament=Tournament.update(params[:id],:name => params[:tournament][:name], :status => params[:tournament][:status])
+    @tournament = Tournament.update params[:id], tournament_params
     if @tournament.save
-      flash[:notice]="Changes saved"
+      flash[:notice] = "Changes saved"
       redirect_to @tournament
     else
-      flash[:notice]="Smt went wrong, try again"
+      flash[:notice] = "Something went wrong, try again"
       render "edit"
     end
   end

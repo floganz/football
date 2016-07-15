@@ -2,15 +2,14 @@
 <p>Find me in app/views/tournaments/new.html.erb</p>
 
 
-
-<%= form_tag(:tournaments, method: "post", class: "form-inline") do %>
+<%= form_tag :tournaments, method: "post" do %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:tournament, :name) %>
-		<%= text_field(:tournament, :name) %>
+		<%= label :tournament, :name %>
+		<%= text_field :tournament, :name %>
+	<% end %>
 	<%= content_tag :div, :class => 'form-group' do %>
+		<%= label :tournament, :status %>
+		<%= text_field :tournament, :status %>
 	<% end %>
-		<%= label(:tournament, :status) %>
-		<%= text_field(:tournament, :status) %>
-	<% end %>
-	<%= submit_tag("Create new tournament") %>
+	<%= submit_tag "Create new tournament" %>
 <% end %>

@@ -1,14 +1,14 @@
 <h1>Teams#edit</h1>
 <p>Find me in app/views/teams/edit.html.erb</p>
 
-<% @team=Team.find_by(id: params[:id]) %>
+<% @team = Team.find_by id: params[:id] %>
 
 <%= flash[:notice] %>
 
-<%= form_tag("/teams/#{params[:id]}", method: 'put') do %>
+<%= form_tag "/teams/#{params[:id]}", method: 'put' do %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:team,:name) %>
-		<%= text_field(:team, :name) %>
+		<%= label :team,:name %>
+		<%= text_field :team, :name %>
 	<% end %>
-	<%= submit_tag("Save changes", class: 'btn btn-default') %>
+	<%= submit_tag "Save changes", class: 'btn btn-default' %>
 <% end %>

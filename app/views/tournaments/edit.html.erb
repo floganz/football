@@ -1,20 +1,20 @@
 <h1>Tournaments#edit</h1>
 <p>Find me in app/views/tournaments/edit.html.erb</p>
 
-<% @tournament=Tournament.find_by(id: params[:id]) %>
+<% @tournament = Tournament.find_by id: params[:id] %>
 
 <%= flash[:notice] %>
 
-<%= form_tag("/tournaments/#{params[:id]}", method: 'put') do %>
+<%= form_tag "/tournaments/#{params[:id]}", method: 'put' do %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:tournament,:name) %>
-		<%= text_field(:tournament, :name) %>
+		<%= label :tournament,:name %>
+		<%= text_field :tournament, :name %>
 	<% end %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:tournament, :status) %>
-		<%= text_field(:tournament, :status) %>
+		<%= label :tournament, :status %>
+		<%= text_field :tournament, :status %>
 	<% end %>
-	<%= submit_tag("Save changes", class: 'btn btn-default') %>
+	<%= submit_tag "Save changes", class: 'btn btn-default' %>
 <% end %>
 
 <%= link_to 'Add rounds', new_tournament_round_path(params[:id]), class: "btn btn-default" %>

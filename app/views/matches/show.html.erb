@@ -1,2 +1,6 @@
 <h1>Matches#show</h1>
 <p>Find me in app/views/matches/show.html.erb</p>
+ 
+<p><%= "First team: #{ flash[:first_team_name] }"%></p>
+<p><%= "Second team: #{ flash[:second_team_name] }"%></p>
+<p><%= "Score: #{ @match.first_team_goals } - #{ @match.second_team_goals }" %></p>

@@ -3,14 +3,22 @@
 <%= flash[:notice] %>
 <p>Fill the form below</p>
 
-<%= form_tag(:users, method: "post") do %>
-	<%= label(:user, :name) %>
-	<%= text_field(:user, :name) %>
-	<%= label(:user, :surname) %>
-	<%= text_field(:user, :surname) %>
-	<%= label(:user, :email) %>
-	<%= text_field(:user, :email) %>
-	<%= label(:user, :photo) %>
-	<%= text_field(:user, :photo) %>
-	<%= submit_tag("Register") %>
+<%= form_tag :users, method: "post" do %>
+	<%= content_tag :div, :class => "form-group" do %>
+		<%= label :user, :name %>
+		<%= text_field :user, :name %>
+	<% end %>
+	<%= content_tag :div, :class => "form-group" do %>
+		<%= label :user, :surname %>
+		<%= text_field :user, :surname %>
+	<% end %>
+	<%= content_tag :div, :class => "form-group" do %>
+		<%= label :user, :email %>
+		<%= text_field :user, :email %>
+	<% end %>
+	<%= content_tag :div, :class => "form-group" do %>
+		<%= label :user, :photo %>
+		<%= text_field :user, :photo %>
+	<% end %>
+	<%= submit_tag "Register" %>
 <% end %>

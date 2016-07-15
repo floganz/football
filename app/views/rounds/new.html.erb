@@ -3,19 +3,19 @@
 
 <%= flash[:notice] %>
 
-<%= form_tag(:rounds, method: 'post') do %>
-	<%= text_field(:round,:tournament_id, :type => 'hidden', :value => params[:tournament_id]) %>
+<%= form_tag :rounds, method: 'post' do %>
+	<%= text_field :round,:tournament_id, :type => 'hidden', :value => params[:tournament_id] %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:round,:name) %>
-		<%= text_field(:round, :name) %>
+		<%= label :round,:name %>
+		<%= text_field :round, :name %>
 	<% end %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:round, :round_type) %>
-		<%= text_field(:round, :round_type) %>
+		<%= label :round, :round_type %>
+		<%= text_field :round, :round_type %>
 	<% end %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:round, :order) %>
-		<%= text_field(:round, :order) %>
+		<%= label :round, :order %>
+		<%= text_field :round, :order %>
 	<% end %>
-	<%= submit_tag("Add new round") %>
+	<%= submit_tag "Add new round" %>
 <% end %>

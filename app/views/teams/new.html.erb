@@ -3,18 +3,18 @@
 
 <%= flash[:notice] %>
 
-<%= form_tag(:teams, method: 'post') do %>
+<%= form_tag :teams, method: 'post' do %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:team,:first_user_id) %>
-		<%= text_field(:team, :first_user_id) %>
+		<%= label :team,:first_user_id %>
+		<%= text_field :team, :first_user_id %>
 	<% end %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:team, :second_user_id) %>
-		<%= text_field(:team, :second_user_id) %>
+		<%= label :team, :second_user_id %>
+		<%= text_field :team, :second_user_id %>
 	<% end %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<%= label(:team, :name) %>
-		<%= text_field(:team, :name) %>
+		<%= label :team, :name %>
+		<%= text_field :team, :name %>
 	<% end %>
-	<%= submit_tag("Add new team") %>
+	<%= submit_tag "Add new team" %>
 <% end %>

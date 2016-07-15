@@ -1,26 +1,27 @@
 class UsersController < ApplicationController
-  def new
-  end
-
   def show
-    @user=User.find(params[:id])
-  end
-
-  def edit
+    @user = User.find_by id: params[:id]
+    if @user.nil?
+      flash[:notice] = "User not found"
+      render "index"
+    end
   end
 
   def update
-    @user=User.update(params[:id],:name => params[:user][:name],:surname => params[:user][:surname],:email => params[:user][:email],:photo => params[:user][:photo])
-    @user.save
+    #@user = User.update(params[:id],:name => params[:user][:name],:surname => params[:user][:surname],:email => params[:user][:email],:photo => params[:user][:photo])
+    @user = User.update params[:id], user_params    
+    if @user.save
+      redirect_to @user
+    end
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new user_params
     if @user.save
-      flash[:notice]=""
+      flash[:notice] = ""
       redirect_to @user
     else
-      flash[:notice]="Smt went wrong!"
+      flash[:notice] = "Something went wrong, try again"
       render "new"
     end
   end
