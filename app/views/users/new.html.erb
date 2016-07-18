@@ -3,6 +3,19 @@
 <%= flash[:notice] %>
 <p>Fill the form below</p>
 
+<% if defined? @user %>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<% end %>
+
 <%= form_tag :users, method: "post" do %>
 	<%= content_tag :div, :class => "form-group" do %>
 		<%= label :user, :name %>
@@ -12,13 +25,21 @@
 		<%= label :user, :surname %>
 		<%= text_field :user, :surname %>
 	<% end %>
-	<%= content_tag :div, :class => "form-group" do %>
+	<%= content_tag :div, :class => "form-group", :type => "email" do %>
 		<%= label :user, :email %>
 		<%= text_field :user, :email %>
 	<% end %>
 	<%= content_tag :div, :class => "form-group" do %>
 		<%= label :user, :photo %>
 		<%= text_field :user, :photo %>
+	<% end %>
+	<%= content_tag :div, :class => "form-group" do %>
+		<%= label :user, :password %>
+		<%= text_field :user, :password, :type => "password" %>
+	<% end %>
+	<%= content_tag :div, :class => "form-group" do %>
+		<%= label :user, :password_conf %>
+		<%= text_field :user, :password_confirmation, :type => "password" %>
 	<% end %>
 	<%= submit_tag "Register" %>
 <% end %>

@@ -4,6 +4,7 @@
 <%= flash[:notice] %>
 
 <%= form_tag :matches, method: 'post' do %>
+	<%= text_field :match,:round_id, :type => 'hidden', :value => params[:round_id] %>
 	<%= content_tag :div, :class => 'form-group' do %>
 		<%= label :match, :first_team_id %>
 		<%= text_field :match, :first_team_id %>

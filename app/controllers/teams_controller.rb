@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
       flash[:notice] = "Team not found"
       render 'index'
     end
+    flash[:notice] = "Great, found"
     _first_user = User.find_by id: @team.first_user_id
     flash[:first_user_name] = "#{ _first_user.surname } #{ _first_user.name }"
     _second_user = User.find_by id: @team.second_user_id
@@ -32,6 +33,17 @@ class TeamsController < ApplicationController
       flash[:notice] = "Something went wrong, try again"
       render "edit"
     end
+  end
+
+  def search
+    #if !params[:team][:name].nil?
+      @team = Team.find_by name: params[:team][:name]
+    #end
+    flash[:notice] = ""
+    if @team.nil?
+      flash[:notice] = "Team not found"
+    end
+      render 'index'    
   end
 
   def team_params

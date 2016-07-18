@@ -1,0 +1,20 @@
+body {
+	/*background-color: grey;*/
+}
+
+.navbar {
+	max-width: 1000px;
+	min-width: 600px;
+	margin: auto;
+}
+
+#container {
+	margin: auto;
+	max-width: 1000px;
+	min-width: 400px;
+	background-color: white;
+}
+
+#main {
+	margin: 2%;
+}

@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    #@user = User.update(params[:id],:name => params[:user][:name],:surname => params[:user][:surname],:email => params[:user][:email],:photo => params[:user][:photo])
     @user = User.update params[:id], user_params    
     if @user.save
       redirect_to @user
@@ -27,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :surname, :email, :photo)
+    params.require(:user).permit(:name, :surname, :email, :photo, :password, :password_confirmation)
   end
 end

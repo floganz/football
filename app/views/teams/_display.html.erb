@@ -1,0 +1,32 @@
+<% if defined? @team %>
+  <% _first_user = User.find_by id: @team.first_user_id %>
+  <% flash[:first_user_name] = "#{ _first_user.surname } #{ _first_user.name }" %>
+  <% _second_user = User.find_by id: @team.second_user_id %>
+  <% flash[:second_user_name] = "#{ _second_user.surname } #{ _second_user.name }" %>
+	<h3>Team "<%= @team.name %>"</h3>
+	<p>First member: <%= flash[:first_user_name] %></p>
+	<p>Second member: <%= flash[:second_user_name] %></p>
+
+	<% _tour = Tournament.includes(:teams).where(teams: {id: @team.id}) %>
+	<% if _tour.size == 0 %>
+		<h4>No tournaments yet</h4>
+	<% else %>
+		<h4>Active tournaments</h4>
+		<% if (_active = _tour.where(tournaments: {status: "active"})).size == 0 %>
+			<p>No tournamnets yet</p>
+		<% else %>
+			<% _active.each do |row| %>
+				<p><%= link_to row.name, tournaments_url(row.id) %></p>
+			<% end %>
+		<% end %>	
+		<h4>Passed tournaments</h4>
+		<% if (_passed = _tour.where(tournaments: {status: "inactive"})).size == 0 %>
+			<p>No tournamnets yet</p>
+		<% else %>
+			<% _passed.each do |row| %>
+				<p><%= row.name %></p>
+			<% end %>
+		<% end %>
+	<% end %>
+
+<% end %>
