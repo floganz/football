@@ -1,32 +1,40 @@
-<% if defined? @team %>
-  <% _first_user = User.find_by id: @team.first_user_id %>
-  <% flash[:first_user_name] = "#{ _first_user.surname } #{ _first_user.name }" %>
-  <% _second_user = User.find_by id: @team.second_user_id %>
-  <% flash[:second_user_name] = "#{ _second_user.surname } #{ _second_user.name }" %>
-	<h3>Team "<%= @team.name %>"</h3>
-	<p>First member: <%= flash[:first_user_name] %></p>
-	<p>Second member: <%= flash[:second_user_name] %></p>
+<% if !@team.nil? && @team.size>0 %>
+	<% @team.each do |line| %>
+		<% if !line.nil? %>
+		  <% _first_user = User.find_by id: line.first_user_id %>
+		  <% flash[:first_user_name] = "#{ _first_user.surname } #{ _first_user.name }" %>
+		  <% _second_user = User.find_by id: line.second_user_id %>
+		  <% flash[:second_user_name] = "#{ _second_user.surname } #{ _second_user.name }" %>
 
-	<% _tour = Tournament.includes(:teams).where(teams: {id: @team.id}) %>
-	<% if _tour.size == 0 %>
-		<h4>No tournaments yet</h4>
-	<% else %>
-		<h4>Active tournaments</h4>
-		<% if (_active = _tour.where(tournaments: {status: "active"})).size == 0 %>
-			<p>No tournamnets yet</p>
-		<% else %>
-			<% _active.each do |row| %>
-				<p><%= link_to row.name, tournaments_url(row.id) %></p>
+			<h3>Team <%= link_to line.name, team_url(line.id) %></h3>
+			<p>Members: <%= link_to flash[:first_user_name], user_url(line.first_user_id) %>
+			and <%= link_to flash[:second_user_name], user_url(line.second_user_id) %></p>
+
+			<% _tour = Tournament.includes(:teams).where(teams: {id: line.id}) %>
+			<% if _tour.size == 0 %>
+				<h4>No tournaments yet</h4>
+			<% else %>
+				<h4>Active tournaments</h4>
+				<% if (_active = _tour.where(tournaments: {status: "active"})).size == 0 %>
+					<p>No tournamnets yet</p>
+				<% else %>
+					<% _active.each do |row| %>
+						<p><%= link_to row.name, tournament_url(row.id) %></p>
+					<% end %>
+				<% end %>	
+				<h4>Passed tournaments</h4>
+				<% if (_passed = _tour.where(tournaments: {status: "inactive"})).size == 0 %>
+					<p>No tournamnets yet</p>
+				<% else %>
+					<% _passed.each do |row| %>
+						<p><%= link_to row.name, tournament_url(row.id) %></p>
+					<% end %>
+				<% end %>
 			<% end %>
-		<% end %>	
-		<h4>Passed tournaments</h4>
-		<% if (_passed = _tour.where(tournaments: {status: "inactive"})).size == 0 %>
-			<p>No tournamnets yet</p>
 		<% else %>
-			<% _passed.each do |row| %>
-				<p><%= row.name %></p>
-			<% end %>
+			<br><p><%= flash[:notice] %></p>
 		<% end %>
 	<% end %>
-
+<% else %>
+	<br><p><%= flash[:notice] %></p>
 <% end %>

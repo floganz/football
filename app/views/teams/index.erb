@@ -4,16 +4,9 @@
 <%= label :team, "Find team" %>
 <%= form_tag teams_search_url, method: 'get', :class => 'form-inline' do %>
 	<%= content_tag :div, :class => 'form-group' do %>
-		<!-- <%= label :team, :name %> -->
-		<%= text_field :team, :name, :placeholder => 'Team name' %>
+		<%= text_field :team, :keyword, :placeholder => 'Type here keyword', :value => '' %>
 	<% end %>
 	<%= submit_tag "Find team" %>
 <% end %>
 
-<%= flash[:notice] %>
-
-<% if defined? @team %>
-	<%= render 'teams/display' %>
-<% end %>
-
-
+<%= render 'teams/display' %>
