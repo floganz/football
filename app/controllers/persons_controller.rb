@@ -3,7 +3,7 @@ class PersonsController < ApplicationController
 
   def profile
     @user = User.find current_user.id
-    @tournament = User.user_tournaments current_user.id
-    @team = Team.user_teams current_user.id
+    @tournament = User.tournaments current_user.id
+    @team = User.teams current_user.id
   end
 end

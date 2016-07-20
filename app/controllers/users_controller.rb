@@ -7,8 +7,8 @@ class UsersController < ApplicationController
       flash[:notice] = "User not found"
       render "index"
     end
-    @tournament = User.user_tournaments params[:id]
-    @team = Team.user_teams params[:id]
+    @tournament = User.tournaments params[:id]
+    @team = User.teams params[:id]
   end
 
   def update
