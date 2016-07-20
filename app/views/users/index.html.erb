@@ -1,5 +1,22 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
 
-<%= flash[:notice] %>
+<%= label :user, "Find user" %>
+<%= form_tag users_search_url, method: 'get', :class => 'form-inline' do %>
+	<%= content_tag :div, :class => 'form-group' do %>
+		<%= text_field :user, :keyword, :placeholder => 'Type here keyword', :value => '' %>
+	<% end %>
+	<%= submit_tag "Find user" %>
+<% end %>
 
+<div class="feed">
+<% if !@users.nil? && @users.size != 0 %>
+	<% @users.each do |user| %>
+		<%= render 'users/display', row: user %>
+	<% end %>
+<% else %>
+	<div class="row">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+</div>

@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
+  
   def show
     @user = User.find_by id: params[:id]
     if @user.nil?
       flash[:notice] = "User not found"
       render "index"
     end
+    @tournament = User.user_tournaments params[:id]
+    @team = Team.user_teams params[:id]
   end
 
   def update
@@ -23,6 +27,14 @@ class UsersController < ApplicationController
       flash[:notice] = "Something went wrong, try again"
       render "new"
     end
+  end
+
+  def search
+    @users = User.search params[:user][:keyword]
+    if @users.size == 0
+      flash[:notice] = "Nothing found for query '#{params[:user][:keyword]}'"
+    end
+    render 'index'
   end
 
   def user_params

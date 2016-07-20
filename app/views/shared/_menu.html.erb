@@ -17,28 +17,26 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if user_signed_in? %>
         <ul class="nav navbar-nav">
-          <li><a href="/">Main</a></li>
-          <li><a href="/persons/profile" id="profile">Profile<span class="sr-only">(current)</span></a></li>
-          <!--  class="active" Текущая вкладка--> 
-          <!-- ADD auth link to profile -->
-          <li><a href="/tournaments">Tournaments</a></li>
-          <li><a href="/teams">Teams</a></li>
-          <li><a href="/users">Users</a></li>
+          <li class="<%= 'active' if params[:controller] == 'pages' %>"><a href="/">Main</a></li>
+          <li class="<%= 'active' if params[:controller] == 'persons' %>"><a href="/persons/profile" id="profile">Profile<span class="sr-only">(current)</span></a></li>
+          <li  class="<%= 'active' if params[:controller] == 'tournaments' %>"><a href="/tournaments">Tournaments</a></li>
+          <li  class="<%= 'active' if params[:controller] == 'teams' %>"><a href="/teams">Teams</a></li>
+          <li  class="<%= 'active' if params[:controller] == 'users' %>"><a href="/users">Users</a></li>
           <% if current_user.admin? %>
-            <li><a href="/admins">Admin panel</a></li>
+            <li  class="<%= 'active' if params[:controller] == 'admins' %>"><a href="/admins">Admin panel</a></li>
           <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li ><span class="navbar-text">Здравствуйте, <%= current_user.email %></span></li>
+          <li ><span class="navbar-text">Здравствуйте, <%= current_user.email %>, <%= current_user.surname %> <%= current_user.name.to_s.first %>.</span></li>
           <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
         </ul>
       <% else %>
         <ul class="nav navbar-nav">
-          <li><a href="/">Main</a></li>
-          <li><a href="/tournaments">Tournaments</a></li>
-          <li><a href="/teams">Teams</a></li>
-          <li ><a href="/users">Users</a></li>
+          <li class="<%= 'active' if params[:controller] == 'pages' %>"><a href="/">Main</a></li>
+          <li class="<%= 'active' if params[:controller] == 'tournaments' %>"><a href="/tournaments">Tournaments</a></li>
+          <li class="<%= 'active' if params[:controller] == 'teams' %>"><a href="/teams">Teams</a></li>
+          <li class="<%= 'active' if params[:controller] == 'users' %>"><a href="/users">Users</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

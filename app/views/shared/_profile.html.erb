@@ -1,0 +1,74 @@
+<div id=row1>
+	<h3>User info  
+		<% if params[:controller] == 'persons' || current_user.id == @user.id %>
+			<%= link_to 'edit', edit_user_url(@user.id) %>
+		<% end %>
+	</h3>
+	<div id="photo">
+		<%= image_tag @user.photo, :class => 'user_photo' %>
+	</div>
+	<div id="info">
+		<table>
+		<tr>
+			<th>Name</th><td><%= @user.name %></td>
+		</tr>
+		<tr>
+			<th>Surname</th><td><%= @user.surname %></td>
+		</tr>
+		<tr>
+			<th>Email</th><td><%= @user.email %></td>
+		</tr>
+		</table>
+	</div>
+	<div class="clear"></div>
+</div>
+<div id="row2">
+	<h3>Activity</h3>
+	<div id="tour">
+			<% _tour = @tournament %>
+			<% if _tour.size == 0 %>
+				<h3>No tournaments yet</h3>
+			<% else %>
+				<h3>Current tournaments:</h3>
+				<% if (_active = _tour.where(tournaments: {status: "active"})).size == 0 %>
+					<p>No tournamnets yet</p>
+				<% else %>
+					<% _active.each do |row| %>
+						<p><%= link_to row.tour_name, tournament_url(row.tour_id) %></p>
+					<% end %>
+				<% end %>
+
+				<h3>Passed tournaments:</h3>
+				<% if (_passed = _tour.where(tournaments: {status: "inactive"})).size == 0 %>
+					<p>No tournamnets yet</p>
+				<% else %>
+					<% _passed.each do |row| %>
+						<p><%= link_to row.tour_name, tournament_url(row.tour_id) %></p>
+					<% end %>
+				<% end %>
+			<% end %>
+	</div>
+	<div id="team">
+		<% if @team.size == 0 %>
+			<h3>No teams yet</h3>
+		<% else %>
+			<h3>Current team:</h3>
+			<% if (_active = @team.where(teams: {active: 'true'})).size == 0 %>
+				<p>No teams yet</p>
+			<% else %>
+				<% _active.each do |row| %>
+					<p><%= link_to row.team_name, team_url(row.team_id) %></p>
+				<% end %>
+			<% end %>
+
+			<h3>Previous teams:</h3>
+			<% if (_passed = @team.where(teams: {active: 'false'})).size == 0 %>
+				<p>No teams yet</p>
+			<% else %>
+				<% _passed.each do |row| %>
+					<p><%= link_to row.team_name, team_url(row.team_id) %></p>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

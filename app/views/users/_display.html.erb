@@ -1,0 +1,11 @@
+<% if !row.nil? %>
+	<div class="row">
+		<%= image_tag row.photo, :class => 'user_photo' %>
+		<%= link_to "#{row.surname} #{row.name}", user_url(row.id) %>
+		<% if !row.team_name.nil? %>
+			Team "<%= link_to "#{row.team_name}", team_url(row.team_id) %>"
+		<% else %>
+			No current team
+		<% end %>
+	</div>
+<% end %>

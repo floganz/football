@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'admins', to: 'admins#index'
 
   get 'teams/search', to: 'teams#search'
+  get 'tournaments/search', to: 'tournaments#search'
+  get 'users/search', to: 'users#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
